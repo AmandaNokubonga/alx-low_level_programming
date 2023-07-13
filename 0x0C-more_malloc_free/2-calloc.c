@@ -1,12 +1,11 @@
 #include "main.h"
-#include <stdlib.h>
 
 /**
- * _calloc - allocates memory for an array, using malloc.
- * @nmemb: the elements of an array.
- * @size: the  bytes of each element of the array.
+ * _calloc - allocates memory for an array, using malloc
+ * @nmemb: elements aof an array
+ * @size: bytes of each element of the array
  *
- * Return: pointer to the allocated memory or 0
+ * Return: pointer to the allocated memory or NULL
  */
 
 void *_calloc(unsigned int nmemb, unsigned int size)
@@ -25,4 +24,5 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	{
 		ptr[i] = 0;
 	}
-	return ((void *)ptr)
+	return ((void *)ptr);
+}
