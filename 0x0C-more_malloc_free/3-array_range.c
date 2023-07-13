@@ -1,32 +1,39 @@
-#include "main.h"
 #include <stdlib.h>
 
 /**
- * array_range - Creates an array of integers containing a range of values
- * @min: The minimum value (inclusive)
- * @max: The maximum value (inclusive)
+ * array_range - Creates an array of integers representing a
+ * range of values.
  *
- * Return: Pointer to the newly created array
- *         NULL if memory allocation fails or if max is less than min
+ * @min: The minimum value of the range (inclusive).
+ * @max: The maximum value of the range (inclusive).
+ *
+ * Return: Pointer to the array of integers representing the
+ * range.
+ *	Returns NULL if the range is invalid or if memory
+ *	allocation fails.
  */
 int *array_range(int min, int max)
 {
-    int *arr;
-    int size, i;
+	int idx, *arrRng;
 
-    if (min > max)
-        return (NULL);
+	/* Check if min is greater than max */
+	if (min > max)
+		return (NULL);
 
-    size = max - min + 1;
+	/* Calculate the size of the range */
+	int size = max - min + 1;
 
-    arr = malloc(sizeof(int) * size);
+	/* Allocate memory for the array representing the range */
+	arrRng = malloc(size * sizeof(int));
+	if (arrRng == NULL)
+		return (NULL);
 
-    if (arr == NULL)
-        return (NULL);
+	/* Populate the array with consecutive values within the range */
+	for (idx = 0; min <= max; idx++)
+	{
+		arrRng[idx] = min;
+		min++;
+	}
 
-    for (i = 0; i < size; i++)
-        arr[i] = min++;
-
-    return (arr);
+	return (arrRng);
 }
-
