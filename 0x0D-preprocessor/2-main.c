@@ -1,12 +1,17 @@
 #include <stdio.h>
-
 /**
- * main - the program that prints the name of the file
+ * main - Entry point of the program.
  *
- * Return: 0 (Success)
+ * The main function prints the name of the file
+ * it was compiled from using the __FILE__ macro.
+ * It expands to a string literal containing the current source file name.
+ * output, followed by a new line character. It then returns 0 to indicate a
+ * successful execution.
+ *
+ * Return: 0(success)
  */
-into main(void)
+int main(void)
 {
-	printf("%s/n", __FILE__);
+	printf("%s\n", __FILE__);
 	return (0);
 }
