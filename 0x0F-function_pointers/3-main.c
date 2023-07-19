@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
 	{
 		printf("Error\n");
 		return (98);
+	}
 
-
-		/* Checks operator validity */
+	/* Checks operator validity */
 	if ((*argv[2] != '+' && *argv[2] != '-'
 	&& *argv[2] != '*' && *argv[2] != '/'
 	&& *argv[2] != '%') || (strlen(argv[2]) > 1))
