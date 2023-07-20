@@ -3,7 +3,7 @@
  * main - it prints the name of thr program
  * @argc: it consist number of arguments
  * @argv: The array contains of arguments
- * Return: 0 - success.
+ * Return: 0 - successi.
  */
 int main(int argc __attribute__((unused)), char *argv[])
 {
