@@ -1,4 +1,4 @@
-#include <stdio.h> 
+#include <stdio.h>
 
 /**
  * set_bit - gives a bit at a given index to 1
