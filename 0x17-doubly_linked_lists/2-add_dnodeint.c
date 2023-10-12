@@ -1,32 +1,28 @@
 #include "lists.h"
+#include <stdlib.h>
 
 /**
- * add_dnodeint - add a new node at the head of a double linked list
- * @head: head of list
- * @n: new node
- *
- * Return: the address of new node
+ * add_dnodeint - add a new node at the beginning of the list
+ * @head: pointer to the head node
+ * @n: const int n
+ * Return: return new node
  */
 dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 {
-	dlistint_t *new = NULL;
+	dlistint_t *newnode = malloc(sizeof(dlistint_t));
 
-	new = malloc(sizeof(dlistint_t));
-	if (new != NULL)
+	if (newnode == NULL)
+		return (NULL);
+	newnode->n = n;
+	newnode->prev = NULL;
+	newnode->next = NULL;
+	if (*head == NULL)
 	{
-		new->n = n;
-		new->prev = NULL;
-		if (head != NULL)
-		{
-			new->next = head;
-			head->prev = new;
-			head = new;
-		}
-		else
-		{
-			new->next = NULL;
-			head = new;
-		}
+		*head = newnode;
+		return (newnode);
 	}
-	return (new);
+	newnode->next = *head;
+	(*head)->prev = newnode;
+	*head = newnode;
+	return (newnode);
 }
