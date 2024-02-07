@@ -1,43 +1,67 @@
-nclude "search_algos.h"
+#include "search_algos.h"
+
+int binary_search_recursion(int *array, int value,
+			    size_t low, size_t high);
+
 /**
- * advanced_binary - search for a number in a binary way
- * @array: the input
- * @size: the size of the input
- * @value: the value to seaach
- * Return: the index of the value, or -1 when the values is not present
+ * binary_search_recursion - helper to advanced_binary, recursively searches
+ * for a value in an integer array
+ * @array: pointer to first element of array to seach
+ * @value: value to search for
+ * @low: starting index in array
+ * @high: ending index in array
+ *
+ * Return: index containing value, or -1 if value not found or
+ * array is NULL
  */
+int binary_search_recursion(int *array, int value,
+			    size_t low, size_t high)
+{
+	size_t mid, i;
+
+	if (!array)
+		return (-1);
+
+	mid = (low + high) / 2;
+	printf("Searching in array: ");
+	for (i = low; i <= high; i++)
+		printf("%i%s", array[i], i == high ? "\n" : ", ");
+
+	if (array[low] == value)
+		return ((int)low);
+
+	if (array[low] != array[high])
+	{
+		if (array[mid] < value)
+			return (binary_search_recursion(array, value,
+							mid + 1, high));
+		if (array[mid] >= value)
+			return (binary_search_recursion(array, value,
+							low, mid));
+	}
+
+	return (-1);
+}
+
+/**
+ * advanced_binary - searches for a value in a sorted array of integers
+ * using a binary search algorithm. Unlike binary_search, consistently
+ * returns first appearance of value in array
+ * @array: pointer to first element of array to search
+ * @size: number of elements in array
+ * @value: value to search for
+ *
+ * Return: first index containing value, or -1 if value not found or
+ * array is NULL
+ */
+
 int advanced_binary(int *array, size_t size, int value)
 {
-	if (array == NULL)
-		return (-1);
-	return (helperBinary(array, 0, size - 1, value));
-}
-/**
- * helperBinary - search for a number in a binary way
- * @array: the input
- * @s: the begining
- * @e: the end
- * @value: the value to seaach
- * Return: the index of the value, or -1 when the values is not present
- */
-int helperBinary(int *array, int s, int e, int value)
-{
-	int m, i;
+	size_t low = 0;
+	size_t high = size - 1;
 
-	printf("Searching in array: ");
-	for (i = s; i < e; i++)
-	{
-		printf("%i, ", *(array + i));
-	}
-	printf("%i\n", *(array + i));
-	m = ((e - s) / 2) + s;
-	if (*(array + m) == value && *(array + (m - 1)) != value)
-		return (m);
-	if (s == e)
+	if (!array)
 		return (-1);
-	if (*(array + m) >= value)
-		return (helperBinary(array, s, m, value));
-	if (*(array + m) < value)
-		return (helperBinary(array, m + 1, e, value));
-	return (-1);
+
+	return (binary_search_recursion(array, value, low, high));
 }
